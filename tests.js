@@ -88,7 +88,7 @@ window.Specs = {
 			"object-fit": ["fill", "contain", "cover", "none", "scale-down"],
 			"object-position": ["50% 50%", "center", "top right", "bottom 10px right 20px"],
 			"image-orientation": ["from-image", "0deg", "90deg", "45deg", "45deg flip", "1turn", "100grad", "2rad"],
-			"image-rendering": ["auto", "crisp-edges", "pixelated"],
+			"image-rendering": ["auto", "smooth", "high-quality", "crisp-edges", "pixelated"],
 		}
 	},
 
@@ -376,19 +376,32 @@ window.Specs = {
 	},
 
 	"css-text-decor-3": {
-		"title": "文本装饰",
+		"title": "文本装饰 Level 3",
 		"properties": {
+			"text-decoration": "underline dotted green",
 			"text-decoration-line": ["none", "underline", "overline", "line-through", "underline overline"],
 			"text-decoration-color": "white",
 			"text-decoration-style": ["solid", "double", "dotted", "dashed", "wavy"],
-			"text-decoration": "underline dotted green",
-			"text-decoration-skip": ["none", "objects", "spaces", "ink", "edges", "box-decoration", "objects edges"],
 			"text-underline-position": ["auto", "under", "left", "right", "under left", "under right"],
 			"text-emphasis-style": ["none", "filled", "open", "dot", "circle", "double-circle", "triangle", "sesame", "open dot", "'foo'"],
 			"text-emphasis-color": "green",
 			"text-emphasis": "open dot green",
 			"text-emphasis-position": ["over left", "over right", "under left", "under right"],
 			"text-shadow": ["none", "1px 1px", "0 0 black", "1px 2px 3px black"]
+		}
+	},
+
+	"css-text-decor-4": {
+		"title": "文本装饰 Level 4",
+		"properties": {
+			"text-decoration-skip": [ 
+				"none", "objects", "objects spaces", "objects leading-spaces", "objects trailing-spaces",	"objects leading-spaces trailing-spaces",
+				"objects leading-spaces trailing-spaces edges", "objects leading-spaces trailing-spaces edges box-decoration", "objects edges",
+				"objects box-decoration", "spaces", "spaces edges", "spaces edges box-decoration", "spaces box-decoration", "leading-spaces",
+				"leading-spaces trailing-spaces edges", "leading-spaces trailing-spaces edges box-decoration", "edges", "edges box-decoration", 
+				"box-decoration"
+			],
+			"text-decoration-skip-ink" : ["none", "auto"]
 		}
 	},
 
@@ -498,6 +511,9 @@ window.Specs = {
 			"gray()": ["gray(50)","gray(50 / .5)"],
 			"color()": ["color(.2 .4 .6)", "color(image-p3 .2. 4 .6)", "color(foo .2 .4 .6)", "color(.2 .4 .6 / .5)", "color(image-p3 .2 .4 .6  / .5)", "color(foo .2 .4 .6 / .5)"],
 			"device-cmyk()": ["device-cmyk(.2 .3 .4 .5)", "device-cmyk(.2 .3 .4 .5 / .5)", "device-cmyk(.2 .3 .4 .5 / 50%)"]
+		},
+		"properties": {
+			"color-adjust": ["economy", "exact"]
 		}
 	},
 
@@ -603,11 +619,11 @@ window.Specs = {
 	},
 
 	"css-grid-1": {
-		"title": "网格布局",
+		"title": "网格布局 Level 1",
 		"properties": {
-			"display": ["grid", "inline-grid", "subgrid"],
-			"grid-template-columns": ["none", "subgrid", "auto", "100px", "1fr", "100px 1fr auto", "repeat(2, 100px 1fr)", "100px 1fr max-content minmax(min-content, 1fr)", "10px [col-start] 250px [col-end]"],
-			"grid-template-rows": ["none", "subgrid", "auto", "100px", "1fr", "100px 1fr auto", "repeat(2, 100px 1fr)", "100px 1fr max-content minmax(min-content, 1fr)", "10px [row-start] 250px [row-end]"],
+			"display": ["grid", "inline-grid"],
+			"grid-template-columns": ["none", "auto", "100px", "1fr", "100px 1fr auto", "repeat(2, 100px 1fr)", "100px 1fr max-content minmax(min-content, 1fr)", "10px [col-start] 250px [col-end]"],
+			"grid-template-rows": ["none", "auto", "100px", "1fr", "100px 1fr auto", "repeat(2, 100px 1fr)", "100px 1fr max-content minmax(min-content, 1fr)", "10px [row-start] 250px [row-end]"],
 			"grid-template-areas": ["none", "'articles'", "'head head'", "'head head' 'nav main' 'foot ....'"],
 			"grid-template": ["none", "auto 1fr auto / auto 1fr", "[header-top] 'a   a   a' [header-bottom] [main-top] 'b   b   b' 1fr [main-bottom] / auto 1fr auto"],
 			"grid-auto-columns": ["auto", "1fr", "100px", "max-content", "minmax(min-content, 1fr)"],
@@ -627,15 +643,30 @@ window.Specs = {
 		}
 	},
 
+	"css-grid-2": {
+		"title": "网格布局 Level 2",
+		"properties": {
+			"display": ["subgrid"],
+			"grid-template-columns": ["subgrid"],
+			"grid-template-rows": ["subgrid"]
+		}
+	},
+
 	"css3-align": {
 		"title": "盒子对齐",
 		"properties": {
-			"align-self": ["auto", "stretch", "baseline", "center", "start", "end", "self-start", "self-end", "left", "right", "true", "safe", "start true", "start safe"],
-			"align-items": ["auto", "stretch", "baseline", "center", "start", "end", "self-start", "self-end", "left", "right", "true", "safe", "start true", "start safe"],
-			"align-content": ["auto", "baseline", "center", "start", "end", "self-start", "self-end", "left", "right", "start start", "start flex-end", "start start self-end", "start start safe", "start start self-end safe"],
-			"justify-self": ["auto", "stretch", "baseline", "center", "start", "end", "self-start", "self-end", "left", "right", "true", "safe", "start true", "start safe", "self-start true", "self-end safe"],
-			"justify-items": ["auto", "stretch", "baseline", "center", "start", "end", "self-start", "self-end", "left", "right", "true", "safe", "start true", "start safe", "self-start true", "self-end safe", "legacy", "legacy left", "legacy right", "legacy center"],
-			"justify-content": ["auto", "baseline", "center", "start", "end", "self-start", "self-end", "left", "right", "start start", "start self-end", "start start self-end", "start start safe", "start start self-end safe"]
+			"align-self": ["auto", "normal", "stretch", "baseline", "first baseline", "last baseline", "center", "start", "end", "self-start", "self-end", "unsafe start ", "safe start"],
+			"align-items": ["normal", "stretch", "baseline", "first baseline", "last baseline", "center", "start", "end", "self-start", "self-end", "unsafe start ", "safe start"],
+			"align-content": ["normal", "baseline", "first baseline", "last baseline", "space-between", "space-around", "space-evenly", "stretch", "center", "start", "end", "flex-start", "flex-end", "unsafe start ", "safe start"],
+			"justify-self": ["auto", "normal", "stretch", "baseline", "first baseline", "last baseline", "center", "start", "end", "self-start", "self-end", "unsafe start ", "safe start", "left", "right", "safe right"],
+			"justify-items": ["normal", "stretch", "baseline", "first baseline", "last baseline", "center", "start", "end", "self-start", "self-end", "unsafe start ", "safe start", "left", "right", "safe right", "legacy", "legacy left", "legacy right", "legacy center"],
+			"justify-content": ["normal", "space-between", "space-around", "space-evenly", "stretch",  "center", "start", "end", "flex-start", "flex-end", "unsafe start ", "safe start", "left", "right", "safe right"],
+			"place-content" : ["normal", "baseline", "first baseline", "last baseline", "space-between", "space-around", "space-evenly", "stretch", "center", "start", "end", "flex-start", "flex-end", "unsafe start ", "safe start", "normal normal", "baseline normal", "first baseline normal", "space-between normal", "center normal", "unsafe start normal","normal stretch", "baseline stretch", "first baseline stretch", "space-between stretch", "center stretch", "unsafe start stretch", "normal safe right", "baseline safe right", "first baseline safe right", "space-between safe right", "center safe right", "unsafe start safe right"],
+			"place-items" : ["normal", "stretch", "baseline", "first baseline", "last baseline", "center", "start", "end", "self-start", "self-end", "unsafe start ", "safe start", "normal normal", "stretch normal", "baseline normal", "first baseline normal", "self-start normal", "unsafe start normal", "normal stretch", "stretch stretch", "baseline stretch", "first baseline stretch", "self-start stretch", "unsafe start stretch", "normal last baseline", "stretch last baseline", "baseline last baseline", "first baseline last baseline", "self-start last baseline", "unsafe start last baseline", "normal legacy left", "stretch legacy left", "baseline legacy left", "first baseline legacy left", "self-start legacy left", "unsafe start legacy left"],
+			"gap": ["0 0", "0 1em", "1em", "1em 1em"],
+			"column-gap": ["0", "1em"],
+			"row-gap": ["0", "1em"],
+			
 		}
 	},
 
@@ -828,39 +859,38 @@ window.Specs = {
 	"css-snappoints": {
 		"title": "滚动界限点",
 		"properties": {
-			"scroll-snap-type" : ["none", "x mandatory", "y mandatory", "block mandatory", "inline mandatory", "both mandatory",  "x proximity", "y proximity", "block proximity", "inline proximity", "both proximity"],
+			"scroll-margin" : ["0px", "6px 5px", "10px 20px 30px", "10px 20px 30px 40px", "10%", "20% 3em 1in 5rem", "calc(2px)", "calc(50%)", "calc(3*25px)", "calc(3*25px) 5px 10% calc(10%-5px)"],
+			"scroll-margin-block" : ["10px", "10px 10px"],
+			"scroll-margin-block-end" : ["10px"],
+			"scroll-margin-block-start" : ["10px"],
+			"scroll-margin-bottom" : ["10px"],
+			"scroll-margin-inline" : ["10px", "10px 10px"],
+			"scroll-margin-inline-start" : ["10px"],
+			"scroll-margin-inline-end" : ["10px"],
+			"scroll-margin-left" : ["10px"],
+			"scroll-margin-right" : ["10px"],
+			"scroll-margin-top" : ["10px"],
 			"scroll-padding" : ["0px", "6px 5px", "10px 20px 30px", "10px 20px 30px 40px", "10%", "20% 3em 1in 5rem", "calc(2px)", "calc(50%)", "calc(3*25px)", "calc(3*25px) 5px 10% calc(10%-5px)"],
-			"scroll-snap-margin" : ["0px", "6px 5px", "10px 20px 30px", "10px 20px 30px 40px", "10%", "20% 3em 1in 5rem", "calc(2px)", "calc(50%)", "calc(3*25px)", "calc(3*25px) 5px 10% calc(10%-5px)"],
+			"scroll-padding-block" : ["10px", "50%", "10px 50%", "50% 50%"],
+			"scroll-padding-block-end" : ["10px", "50%"],
+			"scroll-padding-block-start" : ["10px", "50%"],
+			"scroll-padding-bottom" : ["10px", "50%"],
+			"scroll-padding-inline" : ["10px", "50%", "10px 50%", "50% 50%"],
+			"scroll-padding-inline-end" : ["10px", "50%"],
+			"scroll-padding-inline-start" : ["10px", "50%"],
+			"scroll-padding-left" : ["10px", "50%"],
+			"scroll-padding-right" : ["10px", "50%"],
+			"scroll-padding-top" : ["10px", "50%"],
 			"scroll-snap-align" : ["none", "start", "end", "center", "none start", "end center", "center start", "end none", "center center"],
 			"scroll-snap-stop" : ["normal", "always"],
-			"scroll-padding-top" : ["10px", "50%"],
-			"scroll-padding-right" : ["10px", "50%"],
-			"scroll-padding-bottom" : ["10px", "50%"],
-			"scroll-padding-left" : ["10px", "50%"],
-			"scroll-padding-inline-start" : ["10px", "50%"],
-			"scroll-padding-block-start" : ["10px", "50%"],
-			"scroll-padding-inline-end" : ["10px", "50%"],
-			"scroll-padding-block-end" : ["10px", "50%"],
-			"scroll-padding-block" : ["10px", "50%", "10px 50%", "50% 50%"],
-			"scroll-padding-inline" : ["10px", "50%", "10px 50%", "50% 50%"],
-			"scroll-snap-margin-top" : ["10px"],
-			"scroll-snap-margin-right" : ["10px"],
-			"scroll-snap-margin-bottom" : ["10px"],
-			"scroll-snap-margin-left" : ["10px"],
-			"scroll-snap-margin-block-start" : ["10px"],
-			"scroll-snap-margin-inline-start" : ["10px"],
-			"scroll-snap-margin-block-end" : ["10px"],
-			"scroll-snap-margin-inline-end" : ["10px"],
-			"scroll-snap-margin-block" : ["10px", "10px 10px"],
-			"scroll-snap-margin-inline" : ["10px", "10px 10px"]
-
+			"scroll-snap-type" : ["none", "always"]
 		}
 	},
 
-	"css-logical-properties": {
+	"css-logical-1": {
 		"title": "逻辑属性",
 		"properties": {
-			"caption-side": ["block-start", "block-end", "inline-start", "inline-end"],
+			"caption-side": ["inline-start", "inline-end"],
 			"float": ["inline-start", "inline-end"],
 			"clear": ["inline-start", "inline-end"],
 			"text-align": ["start", "end"],
@@ -871,30 +901,50 @@ window.Specs = {
 			"min-inline-size": ["100px"],
 			"max-block-size": ["100px"],
 			"max-inline-size": ["100px"],
+			"margin-block": ["10px", "10px 10px"],
 			"margin-block-start": ["10px"],
 			"margin-block-end": ["10px"],
+			"margin-inline": ["10px", "10px 10px"],
 			"margin-inline-start": ["10px"],
 			"margin-inline-end": ["10px"],
-			"offset-block-start": ["10px"],
-			"offset-block-end": ["10px"],
-			"offset-inline-start": ["10px"],
-			"offset-inline-end": ["10px"],
+			"inset": ["10px", "10px 10px", "10px 10px 10px", "10px 10px 10px 10px"],
+			"inset-block": ["10px", "10px 10px"],
+			"inset-block-start": ["10px"],
+			"inset-block-end": ["10px"],
+			"inset-inline": ["10px", "10px 10px"],
+			"inset-inline-start": ["10px"],
+			"inset-inline-end": ["10px"],
+			"padding-block": ["10px", "10px 10px"],
 			"padding-block-start": ["10px"],
 			"padding-block-end": ["10px"],
+			"padding-inline": ["10px", "10px 10px"],
 			"padding-inline-start": ["10px"],
 			"padding-inline-end": ["10px"],
+			"border-block" : ["1px", "2px dotted", "medium dashed green"],
+			"border-block-start" : ["1px", "2px dotted", "medium dashed green"],
 			"border-block-start-width": ["thin"],
-			"border-block-end-width": ["thin"],
-			"border-inline-start-width": ["thin"],
-			"border-inline-end-width": ["thin"],
+			"border-block-start-width": ["thin"],
 			"border-block-start-style": ["dotted"],
-			"border-block-end-style": ["dotted"],
-			"border-inline-start-style": ["dotted"],
-			"border-inline-end-style": ["dotted"],
 			"border-block-start-color": ["navy"],
+			"border-block-end" : ["1px", "2px dotted", "medium dashed green"],
+			"border-block-end-width": ["thin"],
+			"border-block-end-style": ["dotted"],
 			"border-block-end-color": ["navy"],
+			"border-block-width": ["thin 2px"],
+			"border-block-style": ["dotted dashed"],
+			"border-block-color": ["navy blue"],
+			"border-inline": ["1px", "2px dotted", "medium dashed green"],
+			"border-inline-start" : ["1px", "2px dotted", "medium dashed green"],
+			"border-inline-start-width": ["thin"],
+			"border-inline-start-style": ["dotted"],
 			"border-inline-start-color": ["navy"],
+			"border-inline-end" : ["1px", "2px dotted", "medium dashed green"],
+			"border-inline-end-width": ["thin"],
+			"border-inline-end-style": ["dotted"],
 			"border-inline-end-color": ["navy"],
+			"border-inline-width": ["thin 2px"],
+			"border-inline-style": ["dotted dashed"],
+			"border-inline-color": ["navy blue"],
 			"margin": ["logical 5px 10px 15px 20px"],
 			"padding": ["logical 5px 10px 15px 20px"],
 			"border-color": ["logical red green blue yellow"],
