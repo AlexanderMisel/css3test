@@ -1040,7 +1040,7 @@ window.Specs = {
 	},
 
 	"css-scrollbars-1": {
-		"title": "Scrollbars Level 1",
+		"title": "滚动条 Level 1",
 		"properties": {
 			"scrollbar-color": ["auto", "dark", "light", "red blue"],
 			"scrollbar-width": ["auto", "thin", "none", "12px"]
