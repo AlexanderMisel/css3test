@@ -1,13 +1,15 @@
-var Score = function(parent) {
-	this.passed = this.total =
-	this.passedTests = this.totalTests = 0;
-
+var Score = function (parent) {
+	this.passed = this.total = this.passedTests = this.totalTests = 0;
 	this.parent = parent || null;
 };
 
+var ele = function (name) {
+	return document.getElementById(name);
+}
+
 Score.prototype = {
-	update: function(data) {
-		if(!data.total) { return; }
+	update: function (data) {
+		if (!data.total) { return; }
 
 		this.passedTests += data.passed;
 		this.totalTests += data.total;
@@ -15,21 +17,41 @@ Score.prototype = {
 		this.total++;
 		this.passed += data.passed / data.total;
 
-		if(this.parent) {
+		if (this.parent) {
 			this.parent.update(data);
 		}
 	},
 
-	toString: function() {
+	toString: function () {
 		return this.percent() + '%';
 	},
 
-	percent: function() {
+	percent: function () {
 		return Math.round(100 * this.passed / this.total);
 	}
 };
 
-var mainScore = new Score(), _bTestResults = {};
+var mainScore = new Score(),
+	_bTestResults = {};
+
+var devLinkFormat = function (params) {
+	switch (params.devtype) {
+		case "fxtf":
+			// FX Task Force Editor Drafts
+			return 'https://drafts.fxtf.org/' + params.dev;
+		case "houdini":
+			// CSS-TAG Houdini Editor Drafts
+			return 'https://drafts.css-houdini.org/' + params.dev;
+		case "github":
+			return 'https://w3c.github.io/' + params.dev;
+		case "whatwg":
+			// WHATWG
+			return 'https://' + params.dev + '.spec.whatwg.org/';
+		default:
+			// CSS Working Group Editor Drafts
+			return 'http://dev.w3.org/csswg/' + params.dev;
+	}
+};
 
 var Test = function (tests, spec, title) {
 	this.tests = tests;
@@ -38,26 +60,37 @@ var Test = function (tests, spec, title) {
 
 	this.score = new Score(mainScore);
 
-	var
-	h1 = $.create({
+	var contents = [this.title];
+
+	if (tests.links) {
+		if (tests.links.tr) {
+			contents.push($.create({
+				tag: 'a',
+				properties: {
+					href: 'http://w3.org/TR/' + tests.links.tr,
+					target: '_blank',
+					textContent: 'TR',
+					className: 'spec-link'
+				}
+			}));
+		}
+
+		if (tests.links.dev) {
+			contents.push($.create({
+				tag: 'a',
+				properties: {
+					href: devLinkFormat(tests.links),
+					target: '_blank',
+					textContent: 'DEV',
+					className: 'spec-link'
+				}
+			}));
+		}
+	}
+
+	var h1 = $.create({
 		tag: 'h1',
-		contents: [
-			this.title,
-			$.create({
-				tag: 'a',
-				href: 'http://w3.org/TR/' + this.id,
-				target: '_blank',
-				textContent: 'TR',
-				className: 'spec-link'
-			}),
-			$.create({
-				tag: 'a',
-				href: 'https://drafts.csswg.org/' + this.id,
-				target: '_blank',
-				textContent: 'DEV',
-				className: 'spec-link'
-			})
-		]
+		contents: contents
 	}), valuesSection;
 
 	// Wrapper section
@@ -69,7 +102,7 @@ var Test = function (tests, spec, title) {
 	});
 
 	// Perform tests
-	for(var id in Test.groups) {
+	for (var id in Test.groups) {
 		this.group(id, Test.groups[id]);
 	}
 
@@ -84,7 +117,7 @@ var Test = function (tests, spec, title) {
 		inside: h1
 	});
 
-	all.appendChild(this.section);
+	ele('all').appendChild(this.section);
 
 	// Add to list of tested specs
 	$.create({
@@ -98,16 +131,16 @@ var Test = function (tests, spec, title) {
 				contents: title
 			}
 		],
-		inside: specsTested
+		inside: ele('specsTested')
 	});
 }
 
 Test.prototype = {
-	group: function(what, testCallback) {
+	group: function (what, testCallback) {
 		var thisSection, theseTests = this.tests[what];
 
-		for(var feature in theseTests) {
-			if(feature === 'properties') {
+		for (var feature in theseTests) {
+			if (feature === 'properties') {
 				continue;
 			}
 
@@ -115,29 +148,29 @@ Test.prototype = {
 				tag: 'section',
 				className: 'tests ' + what,
 				contents: {
-						tag: 'h1',
-						contents: what
-					},
+					tag: 'h1',
+					contents: what
+				},
 				inside: this.section
 			});
 
 			var dl = document.createElement('dl'),
-			    dt = $.create({
+				dt = $.create({
 					tag: 'dt',
 					textContent: feature,
 					tabIndex: '0',
 					inside: dl
-			});
+				});
 
 			var passed = 0, tests = theseTests[feature];
 
-			tests = tests instanceof Array? tests : [tests];
+			tests = tests instanceof Array ? tests : [tests];
 
-			for(var i=0, test; test = tests[i++];) {
+			for (var i = 0, test; test = tests[i++];) {
 				var results = testCallback(test, feature, theseTests),
-				    success, note;
+					success, note;
 
-				if(typeof results === 'object') {
+				if (typeof results === 'object') {
 					success = results.success;
 					note = results.note;
 				}
@@ -147,13 +180,13 @@ Test.prototype = {
 
 				$.create({
 					tag: 'dd',
-					innerHTML: test + (note? '<small>' + note + '</small>' : ''),
-					className: passclass({passed: Math.round(success * 10000), total: 10000 }),
+					innerHTML: test + (note ? '<small>' + note + '</small>' : ''),
+					className: passclass({ passed: Math.round(success * 10000), total: 10000 }),
 					inside: dl
 				});
 			}
 
-			this.score.update({passed: passed, total: tests.length });
+			this.score.update({ passed: passed, total: tests.length });
 
 			dt.className = passclass({ passed: passed, total: tests.length });
 
@@ -166,17 +199,17 @@ Test.prototype = {
 }
 
 Test.groups = {
-	'values': function(test, label, tests) {
+	'values': function (test, label, tests) {
 		var properties = tests.properties,
 			failed = [];
 
-		for(var j=0, property; property = properties[j++];) {
-			if(!Supports.property(property)) {
+		for (var j = 0, property; property = properties[j++];) {
+			if (!Supports.property(property)) {
 				properties.splice(--j, 1);
 				continue;
 			}
 
-			if(!Supports.value(property, test)) {
+			if (!Supports.value(property, test)) {
 				failed.push(property);
 			}
 		}
@@ -185,27 +218,27 @@ Test.groups = {
 
 		return {
 			success: success,
-			note: success > 0 && success < 1? 'Failed in: ' + failed.join(', ') : ''
+			note: success > 0 && success < 1 ? 'Failed in: ' + failed.join(', ') : ''
 		}
 	},
 
-	'properties': function(value, property) {
+	'properties': function (value, property) {
 		return Supports.value(property, value);
 	},
 
-	'descriptors': function(value, descriptor) {
+	'descriptors': function (value, descriptor) {
 		return Supports.descriptorvalue(descriptor, value);
 	},
 
-	'selectors': function(test) {
+	'selectors': function (test) {
 		return Supports.selector(test);
 	},
 
-	'@rules': function(test) {
+	'@rules': function (test) {
 		return Supports.atrule(test);
 	},
 
-	'Media queries': function(test) {
+	'Media queries': function (test) {
 		var matches = matchMedia(test);
 
 		return matches.media !== 'invalid' && matches.matches;
@@ -215,15 +248,15 @@ Test.groups = {
 function passclass(info) {
 	var success;
 
-	if('passed' in info) {
+	if ('passed' in info) {
 		success = info.passed / info.total;
 	}
-	else if('failed' in info) {
+	else if ('failed' in info) {
 		success = 1 - info.failed / info.total;
 	}
 
 	var classes = [
-	  'epic-fail',
+		'epic-fail',
 		'fail',
 		'very-buggy',
 		'buggy',
@@ -237,27 +270,27 @@ function passclass(info) {
 	return classes[index];
 }
 
-document.onclick = function(evt) {
+document.onclick = function (evt) {
 	var target = evt.target;
 
-	if(/^dt$/i.test(target.nodeName)) {
+	if (/^dt$/i.test(target.nodeName)) {
 		evt.stopPropagation();
 
 		var dl = target.parentNode;
 
-		dl.className = dl.className === 'open'? '' : 'open';
+		dl.className = dl.className === 'open' ? '' : 'open';
 	}
 }
 
-Array.prototype.and = function(arr2, separator) {
+Array.prototype.and = function (arr2, separator) {
 	separator = separator || ' ';
 
 	var ret = [],
-		map = function(val) {
+		map = function (val) {
 			return val + separator + arr2[j]
 		};
 
-	for(var j=0; j<arr2.length; j++) {
+	for (var j = 0; j < arr2.length; j++) {
 		ret = ret.concat(this.map(map));
 	}
 
@@ -265,7 +298,7 @@ Array.prototype.and = function(arr2, separator) {
 };
 
 // [ x or y or z ]{min, max}
-Array.prototype.times = function(min, max, separator) {
+Array.prototype.times = function (min, max, separator) {
 	separator = separator || ' ';
 
 	max = max || min;
@@ -273,20 +306,20 @@ Array.prototype.times = function(min, max, separator) {
 	var ret = [];
 
 
-	if(min === max) {
-		if(min === 1) {
+	if (min === max) {
+		if (min === 1) {
 			ret = this.slice(); // clone
 		}
 		else {
 			ret = this.and(this, separator);
 
-			for(var i=2; i<min; i++) {
+			for (var i = 2; i < min; i++) {
 				ret = this.and(ret, separator);
 			}
 		}
 	}
-	else if(min < max) {
-		for(var i=min; i<=max; i++) {
+	else if (min < max) {
+		for (var i = min; i <= max; i++) {
 			ret = ret.concat(this.times(i, i, separator));
 		}
 	}
@@ -294,18 +327,18 @@ Array.prototype.times = function(min, max, separator) {
 	return ret;
 };
 
-onload = function() {
+onload = function () {
 	var timeBefore = +new Date,
 		duration = 0;
 
 	var specs = [];
 
-	for(var spec in Specs) {
+	for (var spec in Specs) {
 		specs.push(spec);
 	}
 
-	(function() {
-		if(specs.length) {
+	(function () {
+		if (specs.length) {
 			// Get spec id
 			var spec = specs.shift();
 
@@ -317,10 +350,10 @@ onload = function() {
 			timeBefore = +new Date;
 
 			// Output current score
-			score.textContent = mainScore + '';
-			passedTests.textContent = ~~mainScore.passedTests;
-			totalTests.textContent = mainScore.totalTests;
-			total.textContent = mainScore.total;
+			ele('score').textContent = mainScore + '';
+			ele('passedTests').textContent = ~~mainScore.passedTests;
+			ele('totalTests').textContent = mainScore.totalTests;
+			ele('total').textContent = mainScore.total;
 
 			// Schedule next test
 			setTimeout(arguments.callee, 50)
@@ -329,7 +362,7 @@ onload = function() {
 			// Done!
 
 			// Display time taken
-			timeTaken.textContent = +new Date - timeBefore + 'ms';
+			ele('timeTaken').textContent = +new Date - timeBefore + 'ms';
 
 			// Send to Browserscope
 			var testKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBidzawNDA';
