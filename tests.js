@@ -1,6 +1,10 @@
 window.Specs = {
 	"css3-background": {
 		"title": "背景和边框 Level 3",
+		"links": {
+			"tr": "css3-background-3",
+			"dev": "css-backgrounds"
+		},
 		"properties": {
 			"background-repeat": ["space", "round"].concat(["repeat", "space", "round", "no-repeat"].times(2)),
 			"background-attachment": "local",
@@ -36,6 +40,9 @@ window.Specs = {
 
 	"css-backgrounds-4": {
 		"title": "背景和边框 Level 4",
+		"links": {
+			"dev": "css-backgrounds-4",
+		},
 		"properties": {
 			"background-position-x": ["right", "center", "50%", "left, left", "left, right", "right, left", "left, 0%", "10%, 20%, 40%", "0px", "30px", "0%, 10%, 20%, 30%", "left, left, left, left, left", "calc(20px)", "calc(20px + 1em)", "calc(20px / 2)", "calc(20px + 50%)", "calc(50% - 10px)", "calc(-20px)", "calc(-50%)", "calc(-20%)", "right 20px", "left 20px", "right -50px", "left -50px", "right 20px"],
 			"background-position-y": ["bottom", "center", "50%", "top, top", "top, bottom", "bottom, top", "top, 0%", "10%, 20%, 40%", "0px", "30px", "0%, 10%, 20%, 30%", "top, top, top, top, top", "calc(20px)", "calc(20px + 1em)", "calc(20px / 2)", "calc(20px + 50%)", "calc(50% - 10px)", "calc(-20px)", "calc(-50%)", "calc(-20%)", "bottom 20px", "top 20px", "bottom -50px", "top -50px", "bottom 20px"]
@@ -44,6 +51,10 @@ window.Specs = {
 
 	"css3-images": {
 		"title": "图像值 Level 3",
+		"links": {
+			"tr": "css3-images",
+			"dev": "css-images-3"
+		},
 		"values": {
 			"properties": [
 				"background-image",
@@ -59,7 +70,8 @@ window.Specs = {
 				"linear-gradient(white 50%, black)",
 				"linear-gradient(white 5px, black)",
 				"linear-gradient(white, #f06, black)",
-				"linear-gradient(currentColor, black)"
+				"linear-gradient(currentColor, black)",
+				"linear-gradient(red -50px, white calc(-25px + 50%), blue 100%)"
 			],
 			"radial-gradient": [
 				"radial-gradient(white, black)",
@@ -94,6 +106,10 @@ window.Specs = {
 
 	"css-images-4": {
 		"title": "图像值 Level 4",
+		"links": {
+			"tr": "css-images-4",
+			"dev": "css-images-4"
+		},
 		"values": {
 			"properties": [
 				"background-image",
@@ -102,6 +118,12 @@ window.Specs = {
 				"cursor",
 				"content"
 			],
+			"linear-gradient": [
+				"linear-gradient(45deg, #f06 25%, yellow 25% 50%, #f06 50% 75%, yellow 75%)"
+			],
+			"radial-gradient": [
+				"radial-gradient(center, red 0% 25%, blue 25% 75%, red 75% 100%)"
+			],
 			"conic-gradient": [
 				"conic-gradient(white, black)",
 				"conic-gradient(from 5deg, white, black)",
@@ -109,9 +131,13 @@ window.Specs = {
 				"conic-gradient(white 50%, black)",
 				"conic-gradient(white 5deg, black)",
 				"conic-gradient(white, #f06, black)",
-				"conic-gradient(currentColor, black)"
+				"conic-gradient(currentColor, black)",
+				"conic-gradient(black 25%, white 0deg 50%, black 0deg 75%, white 0deg)"
 			],
-			"repeating-conic-gradient": "repeating-conic-gradient(white, black)",
+			"repeating-conic-gradient": [
+				"repeating-conic-gradient(white, black)",
+				"repeating-conic-gradient(hsla(0, 0%, 100%, .2) 0deg 15deg, hsla(0, 0%, 100%, 0) 0deg 30deg)"
+			],
 			"image()": [
 				"image('sprites.png#xywh=10,30,60,20')",
 				"image('wavy.svg', 'wavy.png' , 'wavy.gif')",
@@ -126,6 +152,10 @@ window.Specs = {
 
 	"css3-selectors": {
 		"title": "选择器 Level 3",
+		"links": {
+			"tr": "selectors-3",
+			"dev": "selectors-3"
+		},
 		"selectors": {
 			"Sibling combinator": "foo ~ bar",
 			"::before": "::before",
@@ -182,6 +212,10 @@ window.Specs = {
 
 	"selectors": {
 		"title": "选择器 Level 4",
+		"links": {
+			"tr": "selectors-4",
+			"dev": "selectors-4"
+		},
 		"selectors": {
 			":indeterminate": ":indeterminate",
 			":default": ":default",
@@ -199,6 +233,12 @@ window.Specs = {
 			":not": [":not(em, #foo)"],
 			":has": ["a:has(> img)", "dt:has(+ dt)", "section:not(:has(h1, h2, h3, h4, h5, h6))", "section:has(:not(h1, h2, h3, h4, h5, h6))"],
 			":nth-child of": [":nth-child(-n+3 of li.important)", ":nth-child(even of :not([hidden])"],
+			"[att^=val i]": ["[att^=val i]", "[att^=\"val\" i]", "[att^=val I]", "[att^=\"val\" I]"],
+			"[att*=val i]": ["[att*=val i]", "[att*=\"val\" i]", "[att*=val I]", "[att*=\"val\" I]"],
+			"[att$=val i]": ["[att$=val i]", "[att$=\"val\" i]", "[att$=val I]", "[att$=\"val\" I]"],
+			"[att^=val s]": ["[att^=val s]", "[att^=\"val\" s]", "[att^=val S]", "[att^=\"val\" S]"],
+			"[att*=val s]": ["[att*=val s]", "[att*=\"val\" s]", "[att*=val S]", "[att*=\"val\" S]"],
+			"[att$=val s]": ["[att$=val s]", "[att$=\"val\" s]", "[att$=val S]", "[att$=\"val\" S]"]
 		}
 	},
 
@@ -206,7 +246,11 @@ window.Specs = {
 	 * Note: the following media queries must be true in supporting UAs!
 	 */
 	"css3-mediaqueries": {
-		"title": "媒体查询",
+		"title": "媒体查询 Level 3",
+		"links": {
+			"tr": "css3-mediaqueries",
+			"dev": "mediaqueries-3"
+		},
 		"Media queries": {
 			"negation": ["not print", "not all and (width:1px)"],
 			"width": ["(width)", "(min-width:1px)", "(max-width:1000000px)"],
@@ -248,8 +292,48 @@ window.Specs = {
 		}
 	},
 
+	"mediaqueries-4": {
+		"title": "Media Queries Level 4",
+		"links": {
+			"tr": "mediaqueries-4",
+			"dev": "mediaqueries-4"
+		},
+		"Media queries": {
+			"resolution": ["not (resolution: infinite)"],
+			"hover": ["(hover)", "not (hover: none)", "(hover: hover)"],
+			"any-hover": ["(any-hover)", "not (any-hover: none)", "(any-hover: hover)"],
+			"pointer": ["(pointer)", "not (pointer: none)", "not (pointer: coarse)", "(pointer: fine)"],
+			"any-pointer": ["(any-pointer)", "not (any-pointer: none)", "not (any-pointer: coarse)", "(any-pointer: fine)"],
+			"update": ["(update)", "(update: none)", "(update: slow)", "(update: fast)"],
+			"overflow-block": ["not (overflow-block: none)", "(overflow-block: scroll)", "not (overflow-block: optional-paged)", "not (overflow-block: paged)"],
+			"overflow-inline": ["not (overflow-inline: none)", "(overflow-inline: scroll)"],
+			"color-gamut": ["(color-gamut)", "(color-gamut: srgb)", "not (color-gamut: p3)", "not (color-gamut: rec2020)"]
+		}
+	},
+
+	"mediaqueries-5": {
+		"title": "Media Queries Level 5",
+		"links": {
+			"dev": "mediaqueries-5"
+		},
+		"Media queries": {
+			"prefers-reduced-motion": ["(prefers-reduced-motion: no-preference)", "not (prefers-reduced-motion: reduce)"],
+			"prefers-reduced-transparency": ["(prefers-reduced-transparency: no-preference)", "not (prefers-reduced-transparency: reduce)"],
+			"prefers-contrast": ["(prefers-contrast: no-preference)", "not (prefers-contrast: high)", "not (prefers-contrast: low)"],
+			"prefers-color-scheme": ["not (prefers-color-scheme: no-preference)", "(prefers-color-scheme: light)", "not (prefers-color-scheme: dark)"],
+			"scripting": ["(scripting: none)", "(scripting: initial-only)", "(scripting: enabled)"],
+			"light-level": ["(light-level: dim)", "(light-level: normal)", "(light-level: washed)"],
+			"environment-blending": ["(environment-blending: opaque)", "not (environment-blending: additive)", "not (environment-blending: subtractive)"],
+			"inverted-colors": ["(inverted-colors: none)", "not (light-level: inverted)"],
+		}
+	},
+
 	"css3-ui": {
 		"title": "基本用户界面 Level 3",
+		"links": {
+			"tr": "css-ui-3",
+			"dev": "css-ui-3"
+		},
 		"properties": {
 			"box-sizing": ["border-box", "content-box"],
 			"outline-offset": ["-5px", "0", "5px"],
@@ -270,6 +354,10 @@ window.Specs = {
 
 	"css-ui-4": {
   	"title": "基本用户界面 Level 4",
+		"links": {
+			"tr": "css-ui-4",
+			"dev": "css-ui-4"
+		},
 		"properties": {
 			"appearance": ["auto", "none"],
 			"caret": ["auto", "green", "bar", "green bar"],
@@ -281,6 +369,10 @@ window.Specs = {
 
 	"css3-transitions": {
 		"title": "过渡",
+		"links": {
+			"tr": "css-transitions-1",
+			"dev": "css-transitions-1"
+		},
 		"properties": {
 			"transition-property": ["none", "all", "width", "width, height"],
 			"transition-duration": ["0s", "1s", "100ms"],
@@ -295,8 +387,23 @@ window.Specs = {
 		}
 	},
 
+	"css-easing-1": {
+		"title": "Easing Functions",
+		"links": {
+			"tr": "css-easing-1",
+			"dev": "css-easing-1"
+		},
+		"properties": {
+			"transition-timing-function": ["steps(2, jump-start)", "steps(2, jump-end)", "steps(1, jump-both)", "steps(2, jump-none)"]
+		}
+	},
+
 	"css3-animations": {
 		"title": "动画",
+		"links": {
+			"tr": "css-animations-1",
+			"dev": "css-animations"
+		},
 		"properties": {
 			"animation-name": ["foo", "foo, bar"],
 			"animation-duration": ["0s", "1s", "100ms"],
@@ -320,6 +427,10 @@ window.Specs = {
 
 	"css3-transforms": {
 		"title": "变换",
+		"links": {
+			"tr": "css-transforms-1",
+			"dev": "css-transforms"
+		},
 		"properties": {
 			"transform": [
 				"none",
@@ -347,17 +458,22 @@ window.Specs = {
 
 	"css-text-3": {
 		"title": "文字 Level 3",
+		"links": {
+			"tr": "css-text-3",
+			"dev": "css-text-3"
+		},
 		"properties": {
-			"text-transform": ["full-width"],
+			"text-transform": ["full-width", "full-size-kana", "capitalize full-width", "capitalize full-width full-size-kana"],
 			"tab-size": ["4", "1em"],
-			"line-break": ["auto", "loose", "normal", "strict"],
+			"line-break": ["auto", "loose", "normal", "strict", "anywhere"],
 			"word-break": ["normal", "keep-all", "break-all"],
 			"hyphens": ["auto", "manual", "none"],
 			"overflow-wrap": ["normal", "break-word"],
 			"word-wrap": ["normal", "break-word"],
-			"text-align": ["start", "end", "match-parent", "start end"],
-			"text-align-last": ["auto", "start", "end", "left", "right", "center", "justify"],
-			"text-justify": ["auto", "none", "inter-word", "distribute"],
+			"text-align": ["start", "end", "match-parent", "justify-all"],
+			"text-align-all": ["start", "end", "left", "right", "center", "justify", "match-parent"],
+			"text-align-last": ["auto", "start", "end", "left", "right", "center", "justify", "match-parent"],
+			"text-justify": ["auto", "none", "inter-word", "inter-character"],
 			"word-spacing": ["50%"],
 			"text-indent": ["1em hanging", "1em each-line", "1em hanging each-line"],
 			"hanging-punctuation": ["none", "first", "last", "force-end", "allow-end", "first last"]
@@ -366,6 +482,10 @@ window.Specs = {
 
 	"css-text-4": {
 		"title": "文字 Level 4",
+		"links": {
+			"tr": "css-text-4",
+			"dev": "css-text-4"
+		},
 		"properties": {
 			"hyphenate-character": ["auto", "'\2010'"],
 			"hyphenate-limit-zone": ["1%", "1em"],
@@ -377,6 +497,11 @@ window.Specs = {
 
 	"css-text-decor-3": {
 		"title": "文本装饰 Level 3",
+		"links": {
+			"tr": "css-text-decor-3",
+			"dev": "css-text-decor-3"
+		},
+>>>>>>> 7532b979fa5269bd0dbd0d0dae2d67d7283648d6
 		"properties": {
 			"text-decoration": "underline dotted green",
 			"text-decoration-line": ["none", "underline", "overline", "line-through", "underline overline"],
@@ -393,6 +518,10 @@ window.Specs = {
 
 	"css-text-decor-4": {
 		"title": "文本装饰 Level 4",
+		"links": {
+			"tr": "css-text-decor-4",
+			"dev": "css-text-decor-4"
+		},
 		"properties": {
 			"text-decoration-skip": [
 				"none", "objects", "objects spaces", "objects leading-spaces", "objects trailing-spaces", "objects leading-spaces trailing-spaces",
@@ -407,6 +536,10 @@ window.Specs = {
 
 	"css3-fonts": {
 		"title": "字体",
+		"links": {
+			"tr": "css-fonts-3",
+			"dev": "css-fonts"
+		},
 		"properties": {
 			"font-stretch": ["normal", "ultra-condensed", "extra-condensed", "condensed", "semi-condensed", "semi-expanded", "expanded", "extra-expanded", "ultra-expanded"],
 			"font-size-adjust": ["none", ".5"],
@@ -458,9 +591,12 @@ window.Specs = {
 
 	"css3-writing-modes": {
 		"title": "书写模式",
+		"links": {
+			"tr": "css-writing-modes-3",
+			"dev": "css-writing-modes-3"
+		},
 		"properties": {
 			"direction": ["ltr", "rtl"],
-			"glyph-orientation-vertical": ["auto", "0deg", "90deg", "0", "90"],
 			"unicode-bidi": ["normal", "embed", "isolate", "bidi-override", "isolate-override", "plaintext"],
 			"writing-mode": ["horizontal-tb", "vertical-rl", "vertical-lr"],
 			"text-orientation": ["mixed", "upright", "sideways"],
@@ -470,6 +606,10 @@ window.Specs = {
 
 	"css-color-3": {
 		"title": "颜色 Level 3",
+		"links": {
+			"tr": "css-color-3",
+			"dev": "css-color-3"
+		},
 		"values": {
 			"properties": [
 				"color",
@@ -492,6 +632,10 @@ window.Specs = {
 
 	"css-color-4": {
 		"title": "颜色 Level 4",
+		"links": {
+			"tr": "css-color-4",
+			"dev": "css-color"
+		},
 		"values": {
 			"properties": [
 				"color",
@@ -519,6 +663,10 @@ window.Specs = {
 
 	"css3-multicol": {
 		"title": "多栏排版",
+		"links": {
+			"tr": "css-multicol-1",
+			"dev": "css-multicol"
+		},
 		"properties": {
 			"column-width": ["10em", "auto"],
 			"column-count": ["2", "auto"],
@@ -536,8 +684,12 @@ window.Specs = {
 		}
 	},
 
-	"css3-values": {
-		"title": "值与单位",
+	"css-values-3": {
+		"title": "值与单位 Level 3",
+		"links": {
+			"tr": "css-values-3",
+			"dev": "css-values-3"
+		},
 		"values": {
 			"properties": [
 				"width",
@@ -552,7 +704,6 @@ window.Specs = {
 			"q": "5q",
 			"attr()": ["attr(data-px)", "attr(data-px px)", "attr(data-px px, initial)"],
 			"calc()": ["calc(1px + 2px)", "calc(5px*2)", "calc(5px/2)", "calc(100%/3 - 2*1em - 2*1px)", "calc(attr(data-px)*2)", "calc(5px - 10px)", "calc(1vw - 1px)", "calc(calc(100%))"],
-			"toggle()": "toggle(1px, 2px)"
 		},
 		"properties": {
 			"transform": [
@@ -561,8 +712,48 @@ window.Specs = {
 		}
 	},
 
+	"css-values-4": {
+		"title": "Values and Units Level 4",
+		"links": {
+			"tr": "css-values-4",
+			"dev": "css-values-4"
+		},
+		"values": {
+			"properties": [
+				"width",
+				"padding"
+			],
+			"toggle()": ["toggle(1px, 2px)"],
+			"min()": ["max(10 * (1vw + 1vh) / 2, 12px)"],
+			"max()": ["max(10 * (1vw + 1vh) / 2, 12px)"],
+			"clamp()": ["clamp(12px, 10 * (1vw + 1vh) / 2, 100px)"]
+		}
+	},
+
+	"css-env-1": {
+		"title": "Environment Variables Level 1",
+		"links": {
+			"dev": "css-env-1"
+		},
+		"values": {
+			"properties": [
+				"width",
+				"padding"
+			],
+			"env()": [
+				"env(safe-area-inset-top)", "env(safe-area-inset-top, 12px)",
+				"env(safe-area-inset-right)", "env(safe-area-inset-right, 12px)",
+				"env(safe-area-inset-bottom)", "env(safe-area-inset-bottom, 12px)",
+				"env(safe-area-inset-left)", "env(safe-area-inset-left, 12px)"]
+		}
+	},
+
 	"css3-regions": {
 		"title": "Regions",
+		"links": {
+			"tr": "css-regions-1",
+			"dev": "css-regions"
+		},
 		"properties": {
 			"break-after": ["region"],
 			"break-before": ["region"],
@@ -572,33 +763,12 @@ window.Specs = {
 		}
 	},
 
-	"css3-speech": {
-		"title": "语音",
-		"properties": {
-			"voice-volume": ["silent", "x-soft", "soft", "medium", "loud", "x-loud", "-6dB", "0", "6db"],
-			"voice-balance": ["left", "center", "right", "leftwards", "rightwards", "-100", "0", "100"],
-			"speak": ["auto"],
-			"speak-as": ["normal", "spell-out", "digits", "literal-punctuation", "no-punctuation"],
-			"pause-before": ["none", "x-weak", "weak", "medium", "strong", "x-strong"],
-			"pause-after": ["none", "x-weak", "weak", "medium", "strong", "x-strong"],
-			"pause": ["none", "x-weak", "weak", "medium", "strong", "x-strong"],
-			"rest-before": ["none", "x-weak", "weak", "medium", "strong", "x-strong", "+3s", "250ms"],
-			"rest-after": ["none", "x-weak", "weak", "medium", "strong", "x-strong", "+3s", "250ms"],
-			"rest": ["none", "x-weak", "weak", "medium", "strong", "x-strong", "+3s", "250ms"],
-			"cue-before": ["-6dB", "0", "6db"],
-			"cue-after": ["-6dB", "0", "6db"],
-			"cue": ["-6dB", "0", "6db"],
-			"voice-family": ["preserve"],
-			"voice-rate": ["normal", "x-slow", "slow", "medium", "fast", "x-fast", "0", "100%"],
-			"voice-pitch": ["absolute", "x-low", "low", "medium", "high", "x-high", "0", "100%", "-100%", "250Hz", "+250Hz", "-20Hz", ".2kHz", "-3.5st", "3.5st"],
-			"voice-range": ["absolute", "x-low", "low", "medium", "high", "x-high", "0", "100%", "-100%", "250Hz", "+250Hz", "-20Hz", ".2kHz", "-3.5st", "3.5st"],
-			"voice-stress": ["normal", "strong", "moderate", "none", "reduced "],
-			"voice-duration": ["auto", "+3s", "250ms"]
-		}
-	},
-
 	"css3-flexbox": {
 		"title": "弹性盒排版",
+		"links": {
+			"tr": "css-flexbox-1",
+			"dev": "css-flexbox-1"
+		},
 		"properties": {
 			"align-content": ["flex-start", "flex-end", "space-between", "space-around"],
 			"align-items": ["flex-start", "flex-end"],
@@ -620,6 +790,10 @@ window.Specs = {
 
 	"css-grid-1": {
 		"title": "网格布局 Level 1",
+		"links": {
+			"tr": "css-grid-1",
+			"dev": "css-grid"
+		},
 		"properties": {
 			"display": ["grid", "inline-grid"],
 			"grid-template-columns": ["none", "auto", "100px", "1fr", "100px 1fr auto", "repeat(2, 100px 1fr)", "100px 1fr max-content minmax(min-content, 1fr)", "10px [col-start] 250px [col-end]"],
@@ -645,8 +819,11 @@ window.Specs = {
 
 	"css-grid-2": {
 		"title": "网格布局 Level 2",
+		"links": {
+			"tr": "css-grid-2",
+			"dev": "css-grid-2"
+		},
 		"properties": {
-			"display": ["subgrid"],
 			"grid-template-columns": ["subgrid"],
 			"grid-template-rows": ["subgrid"]
 		}
@@ -654,6 +831,10 @@ window.Specs = {
 
 	"css3-align": {
 		"title": "盒子对齐",
+		"links": {
+			"tr": "css-align-3",
+			"dev": "css-align"
+		},
 		"properties": {
 			"align-self": ["auto", "normal", "stretch", "baseline", "first baseline", "last baseline", "center", "start", "end", "self-start", "self-end", "unsafe start ", "safe start"],
 			"align-items": ["normal", "stretch", "baseline", "first baseline", "last baseline", "center", "start", "end", "self-start", "self-end", "unsafe start ", "safe start"],
@@ -672,6 +853,10 @@ window.Specs = {
 
 	"css-cascade-3": {
 		"title": "级联和继承 Level 3",
+		"links": {
+			"tr": "css-cascade-3",
+			"dev": "css-cascade-3"
+		},
 		"values": {
 			"properties": [
 				"color",
@@ -685,8 +870,13 @@ window.Specs = {
 			"all": ["initial", "inherit", "unset"]
 		}
 	},
+
 	"css-cascade-4": {
 		"title": "级联和继承 Level 4",
+		"links": {
+			"tr": "css-cascade-4",
+			"dev": "css-cascade"
+		},
 		"values": {
 			"properties": [
 				"color",
@@ -700,8 +890,13 @@ window.Specs = {
 			"all": "revert"
 		}
 	},
+
 	"css3-conditional": {
 		"title": "条件规则",
+		"links": {
+			"tr": "css3-conditional",
+			"dev": "css-conditional-3"
+		},
 		"@rules": {
 			"@support": [
 				"@supports (color: green)",
@@ -716,6 +911,11 @@ window.Specs = {
 
 	"css-masking": {
 		"title": "遮罩",
+		"links": {
+			"tr": "css-masking-1",
+			"dev": "css-masking-1",
+			"devtype": "fxtf"
+		},
 		"properties": {
 			"clip-path": ["url('#clip')", "inset(50%)", "circle()", "ellipse()", "polygon(0 10px, 30px 0)", "circle() border-box", "border-box", "padding-box", "content-box", "margin-box", "fill-box", "stroke-box", "view-box", "none"],
 			"clip-rule": ["nonzero", "evenodd"],
@@ -740,6 +940,11 @@ window.Specs = {
 
 	"compositing": {
 		"title": "合成与混合",
+		"links": {
+			"tr": "compositing-1",
+			"dev": "compositing-1",
+			"devtype": "fxtf"
+		},
 		"properties": {
 			"mix-blend-mode": ["normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity"],
 			"isolation": ["auto", "isolate"],
@@ -749,6 +954,10 @@ window.Specs = {
 
 	"css-display": {
 		"title": "显示",
+		"links": {
+			"tr": "css-display-3",
+			"dev": "css-display"
+		},
 		"properties": {
 			"display": [
 				"run-in", "flow", "flow-root",
@@ -765,6 +974,10 @@ window.Specs = {
 
 	"css-shapes": {
 		"title": "Shapes",
+		"links": {
+			"tr": "css-shapes-1",
+			"dev": "css-shapes"
+		},
 		"properties": {
 			"shape-outside": ["none", "inset(10% round 10% 40% 10% 40%)", "ellipse(at top 50% left 20%)", "circle(at right 5% top)", "polygon(100% 0, 100% 100%, 0 100%)", "margin-box", "border-box", "padding-box", "content-box", "inset(10% round 10% 40% 10% 40%) margin-box", "ellipse(at top 50% left 20%) margin-box", "circle(at right 5% top) margin-box", "polygon(100% 0, 100% 100%, 0 100%) margin-box", "attr(src url)", "url(image.png)"],
 			"shape-image-threshold": ["0", "1", "0.0", "0.1"],
@@ -774,6 +987,10 @@ window.Specs = {
 
 	"css3-exclusions": {
 		"title": "排斥",
+		"links": {
+			"tr": "css3-exclusions",
+			"dev": "css-exclusions"
+		},
 		"properties": {
 			"wrap-flow": ["auto", "both", "start", "end", "minimum", "maximum", "clear"],
 			"wrap-through": ["wrap", "none"]
@@ -782,6 +999,11 @@ window.Specs = {
 
 	"filter-effects": {
 		"title": "滤镜效果 Level 1",
+		"links": {
+			"tr": "filter-effects-1",
+			"dev": "filter-effects-1",
+			"devtype": "fxtf"
+		},
 		"properties": {
 			"filter": ["none", "url(#id)", "url(image.svg#id)", "blur(5px)", "brightness(0.5)", "contrast(150%)", "drop-shadow(15px 15px 15px black)", "grayscale(50%)", "hue-rotate(50deg)", "invert(50%)", "opacity(50%)", "sepia(50%)", "saturate(150%)", "grayscale(100%) sepia(100%)"],
 			"flood-color": ["black", "#FFF"],
@@ -793,6 +1015,10 @@ window.Specs = {
 
 	"filters-2": {
 		"title": "滤镜效果 Level 2",
+		"links": {
+			"dev": "filter-effects-2",
+			"devtype": "fxtf"
+		},
 		"properties": {
 			"backdrop-filter": ["none", "url(#id)", "url(image.svg#id)", "blur(5px)", "brightness(0.5)", "contrast(150%)", "drop-shadow(15px 15px 15px black)", "grayscale(50%)", "hue-rotate(50deg)", "invert(50%)", "opacity(50%)", "sepia(50%)", "saturate(150%)", "grayscale(100%) sepia(100%)"],
 		}
@@ -800,6 +1026,11 @@ window.Specs = {
 
 	"pointerevents": {
 		"title": "指针事件",
+		"links": {
+			"tr": "pointerevents2",
+			"dev": "pointerevents",
+			"devtype": "github"
+		},
 		"properties": {
 			"touch-action": ["auto", "none", "pan-x", "pan-y", "pan-x pan-y", "manipulation"]
 		}
@@ -807,6 +1038,11 @@ window.Specs = {
 
 	"fullscreen": {
 		"title": "全屏API",
+		"links": {
+			"tr": "fullscreen",
+			"dev": "pointerevents",
+			"devtype": "whatwg"
+		},
 		"selectors": {
 			"::backdrop": "::backdrop",
 			":fullscreen": ":fullscreen"
@@ -815,6 +1051,10 @@ window.Specs = {
 
 	"css3-break": {
 		"title": "分段",
+		"links": {
+			"tr": "css-break-3",
+			"dev": "css-break"
+		},
 		"properties": {
 			"break-after": ["any", "recto", "verso"],
 			"break-before": ["any", "recto", "verso"],
@@ -827,6 +1067,10 @@ window.Specs = {
 
 	"css3-positioning": {
 		"title": "定位",
+		"links": {
+			"tr": "css-position-3",
+			"dev": "css-position"
+		},
 		"properties": {
 			"position": ["sticky"]
 		}
@@ -834,6 +1078,10 @@ window.Specs = {
 
 	"css-will-change": {
 		"title": "Will Change",
+		"links": {
+			"tr": "css-will-change-1",
+			"dev": "css-will-change"
+		},
 		"properties": {
 			"will-change": ["scroll-position", "contents", "transform", "top, left"]
 		}
@@ -841,6 +1089,10 @@ window.Specs = {
 
 	"cssom-view": {
 		"title": "CSSOM视图模式",
+		"links": {
+			"tr": "cssom-view-1",
+			"dev": "cssom-view"
+		},
 		"properties": {
 			"scroll-behavior": ["auto", "smooth "]
 		}
@@ -848,6 +1100,10 @@ window.Specs = {
 
 	"css-ruby-1": {
 		"title": "Ruby",
+		"links": {
+			"tr": "css-ruby-1",
+			"dev": "css-ruby-1"
+		},
 		"properties": {
 			"display": ["ruby", "ruby-base", "ruby-text", "ruby-base-container", "ruby-text-container"],
 			"ruby-position": ["over", "under", "inter-character", "right", "left"],
@@ -856,8 +1112,12 @@ window.Specs = {
 		}
 	},
 
-	"css-snappoints": {
-		"title": "滚动界限点",
+	"css-scroll-snap": {
+		"title": "Scroll Snap",
+		"links": {
+			"tr": "css-scroll-snap-1",
+			"dev": "css-scroll-snap-1"
+		},
 		"properties": {
 			"scroll-margin": ["0px", "6px 5px", "10px 20px 30px", "10px 20px 30px 40px", "10%", "20% 3em 1in 5rem", "calc(2px)", "calc(50%)", "calc(3*25px)", "calc(3*25px) 5px 10% calc(10%-5px)"],
 			"scroll-margin-block": ["10px", "10px 10px"],
@@ -889,6 +1149,10 @@ window.Specs = {
 
 	"css-logical-1": {
 		"title": "逻辑属性",
+		"links": {
+			"tr": "css-logical-1",
+			"dev": "css-logical-1",
+		},
 		"properties": {
 			"caption-side": ["inline-start", "inline-end"],
 			"float": ["inline-start", "inline-end"],
@@ -958,6 +1222,10 @@ window.Specs = {
 
 	"css-lists": {
 		"title": "列表与计数器",
+		"links": {
+			"tr": "css-lists-3",
+			"dev": "css-lists-3"
+		},
 		"properties": {
 			"list-style-type": [
 				"disclosure-closed", "disclosure-open",
@@ -994,6 +1262,10 @@ window.Specs = {
 
 	"css-overflow-3": {
 		"title": "溢出",
+		"links": {
+			"tr": "css-overflow-3",
+			"dev": "css-overflow-3"
+		},
 		"properties": {
 			"max-lines": ["none", "1"],
 			"overflow-x": ["visible", "hidden", "clip", "scroll", "auto"],
@@ -1012,6 +1284,9 @@ window.Specs = {
 
 	"css-containment": {
 		"title": "Containment",
+		"links": {
+			"dev": "css-contain"
+		},
 		"properties": {
 			"contain": ["none", "strict", "content", "size", "layout", "style", "paint"]
 		}
@@ -1019,6 +1294,10 @@ window.Specs = {
 
 	"css-sizing-3": {
 		"title": "Intrinsic & Extrinsic Sizing",
+		"links": {
+			"tr": "css-sizing-3",
+			"dev": "css-sizing-3"
+		},
 		"properties": {
 			"width": ["stretch", "max-content", "min-content", "fit-content", "fit-content(10%)"],
 			"min-width": ["stretch", "max-content", "min-content", "fit-content", "fit-content(10%)"],
@@ -1032,6 +1311,9 @@ window.Specs = {
 
 	"overscroll-behavior": {
 		"title": "Overscroll Behavior",
+		"links": {
+			"dev": "css-overscroll-behavior"
+		},
 		"properties": {
 			"overscroll-behavior": ["contain", "none", "auto"].times(1, 2),
 			"overscroll-behavior-x": ["contain", "none", "auto"],
@@ -1041,9 +1323,57 @@ window.Specs = {
 
 	"css-scrollbars-1": {
 		"title": "滚动条 Level 1",
+		"links": {
+			"tr": "css-scrollbars-1",
+			"dev": "css-scrollbars"
+		},
 		"properties": {
 			"scrollbar-color": ["auto", "dark", "light", "red blue"],
 			"scrollbar-width": ["auto", "thin", "none", "12px"]
+		}
+	},
+
+	"css-paint-api-1": {
+		"title": "Painting API Level 1",
+		"links": {
+			"tr": "css-paint-api-1",
+			"dev": "css-paint-api-1",
+			"devtype": "houdini"
+		},
+		"values": {
+			"properties": [
+				"background-image",
+				"list-style-image",
+				"border-image",
+				"cursor",
+				"content"
+			],
+			"paint()": [
+				"paint(company-logo)", "paint(chat-bubble, blue)", "paint(failing-argument-syntax, 1px, 2px)", "paint(arc, purple, 0.4turn, 0.8turn, 40px, 15px)"
+			]
+		}
+	},
+
+	"css-layout-api-1": {
+		"title": "Layout API Level 1",
+		"links": {
+			"tr": "css-layout-api-1",
+			"dev": "css-layout-api-1",
+			"devtype": "houdini"
+		},
+		"properties": {
+			"display": "layout(foo)"
+		}
+	},
+
+	"css-shadow-parts": {
+		"title": "Shadow Parts",
+		"links": {
+			"tr": "css-shadow-parts-1",
+			"dev": "css-shadow-parts"
+		},
+		"selectors": {
+			"::part": ["::part(label)"]
 		}
 	}
 };
