@@ -501,7 +501,6 @@ window.Specs = {
 			"tr": "css-text-decor-3",
 			"dev": "css-text-decor-3"
 		},
->>>>>>> 7532b979fa5269bd0dbd0d0dae2d67d7283648d6
 		"properties": {
 			"text-decoration": "underline dotted green",
 			"text-decoration-line": ["none", "underline", "overline", "line-through", "underline overline"],
